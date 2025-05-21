@@ -13,7 +13,7 @@ interface TransitionLinkProps {
 }
 
 const TransitionLink: React.FC<TransitionLinkProps> = ({ href, children, className, onClick }) => {
-  const { playWipeIn, isTransitioning } = useTransitionContext();
+  const { startTransition, isTransitioning } = useTransitionContext();
   const currentPathname = usePathname();
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -33,7 +33,7 @@ const TransitionLink: React.FC<TransitionLinkProps> = ({ href, children, classNa
     // For different pages, prevent default and use our transition
     e.preventDefault();
     console.log('TransitionLink clicked:', href);
-    playWipeIn(href);
+    startTransition(href);
   };
 
   return (
