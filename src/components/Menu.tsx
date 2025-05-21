@@ -9,12 +9,14 @@ interface MenuProps {
 }
 
 const Menu: React.FC<MenuProps> = ({ isOpen, onMenuClose }) => {
-  if (!isOpen) {
-    return null;
-  }
-
   return (
-    <div className="fixed inset-0 z-[60] flex flex-col items-center justify-center bg-white">
+    <div
+      className={`
+        fixed inset-0 z-[60] flex flex-col items-center justify-start bg-white/95
+        transition-opacity duration-300 ease-in-out
+        ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}
+      `}
+    >
       {/* Top row: logo, wordmark, close button */}
       <div className="w-full p-6 grid grid-cols-[auto_1fr_auto] items-center absolute top-0 left-0">
         {/* Rose logo (left) */}
@@ -28,10 +30,10 @@ const Menu: React.FC<MenuProps> = ({ isOpen, onMenuClose }) => {
         </div>
 
       </div>
-      <nav className="flex flex-col items-center space-y-8">
-        <a href="#about" onClick={onMenuClose} className="text-6xl font-family font-bold hover:opacity-75 transition-opacity">About</a>
-        <a href="#work" onClick={onMenuClose} className="text-6xl font-family font-bold hover:opacity-75 transition-opacity">Work</a>
-        <a href="#contact" onClick={onMenuClose} className="text-6xl font-family font-bold hover:opacity-75 transition-opacity">Contact</a>
+      <nav className="flex flex-col items-center space-y-8 pt-[25vh]">
+        <a href="#about" onClick={onMenuClose} className="text-6xl font-family font-bold relative bg-clip-text text-transparent bg-[linear-gradient(to_right,#D40000_50%,theme(colors.black)_50%)] bg-[length:200%_100%] bg-[position:100%_0] hover:bg-[position:0%_0] transition-all ease-in-out duration-300">About</a>
+        <a href="#work" onClick={onMenuClose} className="text-6xl font-family font-bold relative bg-clip-text text-transparent bg-[linear-gradient(to_right,#D40000_50%,theme(colors.black)_50%)] bg-[length:200%_100%] bg-[position:100%_0] hover:bg-[position:0%_0] transition-all ease-in-out duration-300">Work</a>
+        <a href="#contact" onClick={onMenuClose} className="text-6xl font-family font-bold relative bg-clip-text text-transparent bg-[linear-gradient(to_right,#D40000_50%,theme(colors.black)_50%)] bg-[length:200%_100%] bg-[position:100%_0] hover:bg-[position:0%_0] transition-all ease-in-out duration-300">Contact</a>
       </nav>
     </div>
   );
