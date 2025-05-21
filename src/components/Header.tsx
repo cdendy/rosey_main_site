@@ -23,9 +23,8 @@ const Header: React.FC<HeaderProps> = ({ onMenuOpen, isMenuOpen }) => {
       <div className="justify-self-center">
         <NewTransitionLink href="/">
           {/* Desktop Wordmark */}
-          <Image src="/images/wordmark_logo.png" alt="Rosey Wordmark" width={120} height={25} className="hidden sm:block" />
-          {/* Mobile Wordmark */}
-          <Image src="/images/wordmark_logo.png" alt="Rosey Wordmark" width={80} height={32} className="block sm:hidden" />
+          <Image src="/images/rosey_wordmark.svg" alt="Rosey Wordmark" width={120} height={25} className="hidden sm:block" />
+          {/* Wordmark hidden on mobile */}
         </NewTransitionLink>
       </div>
 
