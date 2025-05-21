@@ -43,7 +43,7 @@ const Menu: React.FC<MenuProps> = ({ isOpen, onMenuClose }) => {
             <NewTransitionLink href="/about" onClick={onMenuClose} className="text-6xl font-family font-bold relative bg-clip-text text-transparent bg-[linear-gradient(to_right,#D40000_50%,theme(colors.black)_50%)] bg-[length:200%_100%] bg-[position:100%_0] hover:bg-[position:0%_0] transition-all ease-in-out duration-300">About</NewTransitionLink>
           </li>
           <li>
-            <NewTransitionLink href="/work" onClick={onMenuClose} className="text-6xl font-family font-bold relative bg-clip-text text-transparent bg-[linear-gradient(to_right,#D40000_50%,theme(colors.black)_50%)] bg-[length:200%_100%] bg-[position:100%_0] hover:bg-[position:0%_0] transition-all ease-in-out duration-300">Work</NewTransitionLink>
+            <NewTransitionLink href="/Work" onClick={onMenuClose} className="text-6xl font-family font-bold relative bg-clip-text text-transparent bg-[linear-gradient(to_right,#D40000_50%,theme(colors.black)_50%)] bg-[length:200%_100%] bg-[position:100%_0] hover:bg-[position:0%_0] transition-all ease-in-out duration-300">Work</NewTransitionLink>
           </li>
           <li>
             <NewTransitionLink href="/contact" onClick={onMenuClose} className="text-6xl font-family font-bold relative bg-clip-text text-transparent bg-[linear-gradient(to_right,#D40000_50%,theme(colors.black)_50%)] bg-[length:200%_100%] bg-[position:100%_0] hover:bg-[position:0%_0] transition-all ease-in-out duration-300">Contact</NewTransitionLink>
