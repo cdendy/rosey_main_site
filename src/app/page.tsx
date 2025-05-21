@@ -21,16 +21,16 @@ export default function Home() {
       <Menu isOpen={isMenuOpen} onMenuClose={handleMenuClose} />
       <main className="page-content pt-24 sm:pt-32 px-6 sm:px-12 md:px-24 lg:px-36 xl:px-0">
         <div className="max-w-4xl xl:max-w-screen-xl mx-auto space-y-12 sm:space-y-16 xl:grid xl:grid-cols-12 xl:gap-x-8">
-          <p className="text-5xl sm:text-6xl !leading-tight xl:col-span-12">
+          <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl !leading-tight xl:col-span-12">
             If you want to <span className="font-bold">look like everyone else</span>, you’ve got a lot of options.
           </p>
-          <p className="text-5xl sm:text-6xl !leading-tight xl:col-span-12">
+          <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl !leading-tight xl:col-span-12">
             In fact, you should <span className="font-bold">probably stay where you are.</span>
           </p>
-          <p className="text-5xl sm:text-6xl !leading-tight xl:col-span-12">
+          <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl !leading-tight xl:col-span-12">
             But if you want a <span className="font-bold">brand people remember</span>, created by people who <span className="font-bold">care about your business as much as you do</span>, you’re in the right place.
           </p>
-          <p className="text-5xl sm:text-6xl !leading-tight xl:col-span-12">
+          <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl !leading-tight xl:col-span-12">
             Welcome to <span className="font-bold">Rosey.</span>
           </p>
         </div>
