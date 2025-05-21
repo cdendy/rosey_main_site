@@ -1,7 +1,6 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
-import { gsap } from 'gsap';
+// These imports are used in TransitionContext, not needed here
 import { useTransitionContext } from '@/context/TransitionContext';
 
 const TransitionOverlay = () => {

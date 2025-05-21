@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import NewTransitionLink from './NewTransitionLink';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+// Import heroicons if needed for the menu button
 
 interface HeaderProps {
   onMenuOpen: () => void;

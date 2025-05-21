@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import NewTransitionLink from './NewTransitionLink';
-import { XMarkIcon } from '@heroicons/react/24/outline';
+// Remove unused import
 
 interface MenuProps {
   isOpen: boolean;
