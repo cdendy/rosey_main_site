@@ -19,7 +19,7 @@ export default function ContactPage() {
     <div className="min-h-screen bg-white text-black font-family">
       <Header onMenuOpen={handleMenuOpen} isMenuOpen={isMenuOpen} />
       <Menu isOpen={isMenuOpen} onMenuClose={handleMenuClose} />
-      <main className="pt-24 sm:pt-32 px-6 sm:px-12 md:px-24 lg:px-36 xl:px-0">
+      <main className="page-content pt-24 sm:pt-32 px-6 sm:px-12 md:px-24 lg:px-36 xl:px-0">
         <div className="max-w-4xl xl:max-w-screen-xl mx-auto">
           <h1 className="text-5xl sm:text-6xl font-bold">Contact</h1>
         </div>

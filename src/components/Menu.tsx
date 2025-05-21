@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
+import NewTransitionLink from './NewTransitionLink';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 
 interface MenuProps {
@@ -22,23 +22,33 @@ const Menu: React.FC<MenuProps> = ({ isOpen, onMenuClose }) => {
       <div className="w-full p-6 grid grid-cols-[auto_1fr_auto] items-center absolute top-0 left-0">
         {/* Rose logo (left) */}
         <div className="justify-self-start">
-          <Link href="/" onClick={onMenuClose}>
+          <NewTransitionLink href="/" onClick={onMenuClose}>
             <Image src="/images/rosey_rose.svg" alt="Rosey Logo" width={40} height={40} />
-          </Link>
+          </NewTransitionLink>
         </div>
         {/* Wordmark (center) */}
         <div className="justify-self-center">
-          <Link href="/" onClick={onMenuClose}>
+          <NewTransitionLink href="/" onClick={onMenuClose}>
+            {/* Desktop Wordmark */}
             <Image src="/images/wordmark_logo.png" alt="Rosey Wordmark" width={120} height={25} className="hidden sm:block" />
+            {/* Mobile Wordmark */}
             <Image src="/images/wordmark_logo.png" alt="Rosey Wordmark" width={80} height={32} className="block sm:hidden" />
-          </Link>
+          </NewTransitionLink>
         </div>
 
       </div>
-      <nav className="flex flex-col items-center space-y-8 pt-[25vh]">
-        <Link href="/about" onClick={onMenuClose} className="text-6xl font-family font-bold relative bg-clip-text text-transparent bg-[linear-gradient(to_right,#D40000_50%,theme(colors.black)_50%)] bg-[length:200%_100%] bg-[position:100%_0] hover:bg-[position:0%_0] transition-all ease-in-out duration-300">About</Link>
-        <Link href="/work" onClick={onMenuClose} className="text-6xl font-family font-bold relative bg-clip-text text-transparent bg-[linear-gradient(to_right,#D40000_50%,theme(colors.black)_50%)] bg-[length:200%_100%] bg-[position:100%_0] hover:bg-[position:0%_0] transition-all ease-in-out duration-300">Work</Link>
-        <Link href="/contact" onClick={onMenuClose} className="text-6xl font-family font-bold relative bg-clip-text text-transparent bg-[linear-gradient(to_right,#D40000_50%,theme(colors.black)_50%)] bg-[length:200%_100%] bg-[position:100%_0] hover:bg-[position:0%_0] transition-all ease-in-out duration-300">Contact</Link>
+      <nav className="pt-[25vh]">
+        <ul className="flex flex-col items-center space-y-8">
+          <li>
+            <NewTransitionLink href="/about" onClick={onMenuClose} className="text-6xl font-family font-bold relative bg-clip-text text-transparent bg-[linear-gradient(to_right,#D40000_50%,theme(colors.black)_50%)] bg-[length:200%_100%] bg-[position:100%_0] hover:bg-[position:0%_0] transition-all ease-in-out duration-300">About</NewTransitionLink>
+          </li>
+          <li>
+            <NewTransitionLink href="/work" onClick={onMenuClose} className="text-6xl font-family font-bold relative bg-clip-text text-transparent bg-[linear-gradient(to_right,#D40000_50%,theme(colors.black)_50%)] bg-[length:200%_100%] bg-[position:100%_0] hover:bg-[position:0%_0] transition-all ease-in-out duration-300">Work</NewTransitionLink>
+          </li>
+          <li>
+            <NewTransitionLink href="/contact" onClick={onMenuClose} className="text-6xl font-family font-bold relative bg-clip-text text-transparent bg-[linear-gradient(to_right,#D40000_50%,theme(colors.black)_50%)] bg-[length:200%_100%] bg-[position:100%_0] hover:bg-[position:0%_0] transition-all ease-in-out duration-300">Contact</NewTransitionLink>
+          </li>
+        </ul>
       </nav>
     </div>
   );

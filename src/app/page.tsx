@@ -19,7 +19,7 @@ export default function Home() {
     <div className="min-h-screen bg-white text-black font-family">
       <Header onMenuOpen={handleMenuOpen} isMenuOpen={isMenuOpen} />
       <Menu isOpen={isMenuOpen} onMenuClose={handleMenuClose} />
-      <main className="pt-24 sm:pt-32 px-6 sm:px-12 md:px-24 lg:px-36 xl:px-0">
+      <main className="page-content pt-24 sm:pt-32 px-6 sm:px-12 md:px-24 lg:px-36 xl:px-0">
         <div className="max-w-4xl xl:max-w-screen-xl mx-auto space-y-12 sm:space-y-16 xl:grid xl:grid-cols-12 xl:gap-x-8">
           <p className="text-5xl sm:text-6xl !leading-tight xl:col-span-12">
             If you want to <span className="font-bold">look like everyone else</span>, you’ve got a lot of options.
