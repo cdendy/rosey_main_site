@@ -1,19 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import useMenuState from '@/hooks/useMenuState';
 import Header from '@/components/Header';
 import Menu from '@/components/Menu';
 
 export default function Home() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const handleMenuOpen = () => {
-    setIsMenuOpen(prevIsMenuOpen => !prevIsMenuOpen);
-  };
-
-  const handleMenuClose = () => {
-    setIsMenuOpen(false);
-  };
+  const [isMenuOpen, handleMenuOpen, handleMenuClose] = useMenuState();
 
   return (
     <div className="min-h-screen bg-white text-black font-family">
