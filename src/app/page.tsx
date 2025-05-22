@@ -28,11 +28,11 @@ export default function Home() {
             In fact, you should <span className="font-bold">probably stay where you are.</span>
           </p>
           <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl !leading-tight xl:col-span-12">
-            But if you want a <span className="font-bold">brand people remember</span>, created by people who <span className="font-bold">care about your business as much as you do</span>, you’re in the right place.
+            But if you want a <span className="font-bold">brand people remember</span>, created by people who care, you’re in the right place.
           </p>
-          <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl !leading-tight xl:col-span-12">
+          {/* <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl !leading-tight xl:col-span-12">
             Welcome to <span className="font-bold">Rosey.</span>
-          </p>
+          </p> */}
         </div>
       </main>
     </div>
