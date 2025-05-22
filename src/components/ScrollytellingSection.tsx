@@ -56,7 +56,7 @@ export default function ScrollytellingSection() {
         anticipatePin: 1,
         snap: {
           snapTo: step,
-          duration: { min: 0.1, max: 0.3 },
+          duration: { min: 0.05, max: 0.1 },
           ease: 'power1.inOut'
         }
       }
