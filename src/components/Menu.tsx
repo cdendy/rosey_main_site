@@ -2,7 +2,6 @@
 
 import Image from 'next/image';
 import NewTransitionLink from './NewTransitionLink';
-// Remove unused import
 
 interface MenuProps {
   isOpen: boolean;

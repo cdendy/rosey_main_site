@@ -1,6 +1,5 @@
 'use client';
 
-// These imports are used in TransitionContext, not needed here
 import { useTransitionContext } from '@/context/TransitionContext';
 
 const TransitionOverlay = () => {

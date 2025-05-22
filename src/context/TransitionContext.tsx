@@ -50,7 +50,6 @@ export const TransitionProvider: React.FC<TransitionProviderProps> = ({ children
     const tl = gsap.timeline({
       onComplete: () => {
         // Only navigate after the screen is covered
-        console.log('Navigating to:', href);
         router.push(href);
       }
     });
