@@ -79,6 +79,11 @@ export default function ScrollytellingSection() {
     };
   }, []);
 
+  const handleSkip = () => {
+    const el = document.getElementById('additional-content');
+    el?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <section ref={sectionRef} className="relative">
       <div className="relative h-screen w-full">
@@ -93,6 +98,12 @@ export default function ScrollytellingSection() {
             </p>
           </div>
         ))}
+        <button
+          onClick={handleSkip}
+          className="absolute bottom-4 right-4 text-sm text-black/60 hover:text-black transition-colors"
+        >
+          Skip
+        </button>
       </div>
     </section>
   );
