@@ -1,0 +1,62 @@
+/* Scrollytelling section styles */
+.scrollytelling {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Fixed height viewport */
+  overflow: hidden; /* Hide overflow content */
+}
+
+/* Text container that gets pinned */
+.scrollytelling .text-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+/* Text panel styling */
+.scrollytelling .text-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden; /* Use visibility for GSAP autoAlpha */
+  opacity: 0;
+}
+
+/* First panel is visible by default */
+.scrollytelling .text-panel:first-child {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Text styling */
+.scrollytelling .text-panel p {
+  text-align: center;
+  max-width: 90%;
+  margin: 0 auto;
+  padding: 0 20px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+/* Spacer element to create scrolling room */
+.scrollytelling .spacer {
+  position: relative;
+  width: 100%;
+  /* Height is set dynamically in the component based on number of panels */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .scrollytelling .text-panel p {
+    max-width: 95%;
+    padding: 0 10px;
+  }
+}
