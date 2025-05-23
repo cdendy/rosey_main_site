@@ -64,6 +64,18 @@ export default function ScrollytellingSection() {
     });
     tlRef.current = tl;
 
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+        e.preventDefault();
+        window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
+      } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+        e.preventDefault();
+        window.scrollBy({ top: -window.innerHeight, behavior: 'smooth' });
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
     panels.slice(1).forEach((panel, idx) => {
       const base = idx * step;
       tl.to(panels[idx], { autoAlpha: 0, duration: step / 2 }, base);
@@ -82,6 +94,7 @@ export default function ScrollytellingSection() {
     );
 
     return () => {
+      window.removeEventListener('keydown', handleKeyDown);
       tl.kill();
       ScrollTrigger.getAll().forEach(t => t.kill());
     };
