@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -32,6 +32,7 @@ export default function ScrollytellingSection({
   const sectionRef = useRef<HTMLElement | null>(null);
   const panelRefs  = useRef<HTMLDivElement[]>([]);
   const tlRef      = useRef<gsap.core.Timeline | null>(null);
+  const [currentPanel, setCurrentPanel] = useState(0);
 
   const addPanel = (el: HTMLDivElement | null) => {
     if (el && !panelRefs.current.includes(el)) panelRefs.current.push(el);
@@ -45,8 +46,10 @@ export default function ScrollytellingSection({
     const panels  = panelRefs.current;
     if (!section || panels.length < 2) return;
 
+    // Calculate scroll length based on number of panels (including the content panel)
     const scrollLen = panels.length * window.innerHeight;
 
+    // Hide all panels except the first one
     panels.forEach((p, i) => i && gsap.set(p, { autoAlpha: 0 }));
 
     const step = 1 / (panels.length - 1);
@@ -59,7 +62,12 @@ export default function ScrollytellingSection({
         pin: true,
         scrub: true,
         anticipatePin: 1,
-        onLeave: self => self.kill(),
+        onUpdate: (self) => {
+          // Track which panel is currently visible
+          const progress = self.progress;
+          const panelIndex = Math.round(progress * (panels.length - 1));
+          setCurrentPanel(panelIndex);
+        },
         snap: {
           snapTo: step,
           duration: { min: 0.05, max: 0.1 },
@@ -81,6 +89,7 @@ export default function ScrollytellingSection({
 
     window.addEventListener('keydown', handleKeyDown);
 
+    // Animate panel transitions
     panels.slice(1).forEach((panel, idx) => {
       const base = idx * step;
       tl.to(panels[idx], { autoAlpha: 0, duration: step / 2 }, base);
@@ -101,35 +110,59 @@ export default function ScrollytellingSection({
 
   const handleSkip = () => {
     const tl = tlRef.current;
-    tl?.scrollTrigger?.kill();
-    tl?.progress(1);
-    document
-      .getElementById('additional-content')
-      ?.scrollIntoView({ behavior: 'smooth' });
+    const st = tl?.scrollTrigger;
+    
+    if (!st) return;
+    
+    // If we're on the last panel (content panel) and scrolling back, go to the first panel
+    if (currentPanel === panelRefs.current.length - 1) {
+      st.scroll(st.start);
+    } else {
+      // Otherwise, skip to the last panel (content)
+      st.scroll(st.end - 1);
+    }
   };
 
   return (
     <section ref={sectionRef} className="relative">
       <div className="relative h-screen w-full">
-        {LINES.map((txt, i) => (
-          <div
-            key={i}
-            ref={addPanel}
-            className="absolute inset-0 flex items-center justify-center"
-          >
-            <p className="px-4 text-center leading-tight text-3xl md:text-4xl lg:text-5xl xl:text-6xl">
-              {txt}
-            </p>
+        {/* Container with 12-column grid layout */}
+        <div className="absolute inset-0 px-6 sm:px-12 md:px-24 lg:px-36 xl:px-0">
+          <div className="max-w-4xl xl:max-w-screen-xl mx-auto h-full grid grid-cols-12 gap-5">
+            {/* Scrollytelling text panels */}
+            {LINES.map((txt, i) => (
+              <div
+                key={i}
+                ref={addPanel}
+                className="absolute inset-0 flex items-start justify-center pt-32 sm:pt-40 md:items-center md:pt-0 px-6 sm:px-12 md:px-24 lg:px-36 xl:px-0"
+              >
+                <div className="max-w-4xl xl:max-w-screen-xl mx-auto grid grid-cols-12 gap-5 w-full">
+                  <div className="col-span-12 sm:col-span-10 sm:col-start-2 xl:col-span-8 xl:col-start-3 flex items-center justify-center">
+                    <p className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl !leading-tight text-center">
+                      {txt}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+            
+            {/* Final panel with the main content */}
+            <div ref={addPanel} className="absolute inset-0 overflow-y-auto px-6 sm:px-12 md:px-24 lg:px-36 xl:px-0">
+              <div className="max-w-4xl xl:max-w-screen-xl mx-auto grid grid-cols-12 gap-5 min-h-full">
+                <div className="col-span-12 sm:col-span-10 sm:col-start-2 xl:col-span-8 xl:col-start-3">
+                  {children}
+                </div>
+              </div>
+            </div>
           </div>
-        ))}
-        <div ref={addPanel} className="absolute inset-0 flex items-center justify-center">
-          {children}
         </div>
+        
+        {/* Skip button */}
         <button
           onClick={handleSkip}
-          className="absolute bottom-4 right-4 text-sm text-black/60 hover:text-black transition-colors"
+          className="fixed bottom-4 right-4 text-sm text-black/60 hover:text-black transition-colors z-50"
         >
-          Skip
+          {currentPanel === panelRefs.current.length - 1 ? 'Back to top' : 'Skip'}
         </button>
       </div>
     </section>
