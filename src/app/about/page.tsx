@@ -15,11 +15,11 @@ export default function AboutPage() {
       <Menu isOpen={isMenuOpen} onMenuClose={handleMenuClose} />
       <main className="page-content pt-24 sm:pt-32 px-6 sm:px-12 md:px-24 lg:px-36 xl:px-0">
         <div className="max-w-4xl xl:max-w-screen-xl mx-auto">
-          <ScrollytellingSection />
-          <section id="additional-content" className="mt-16 space-y-8">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">
-              The Future of Agency Work is Here
-            </h2>
+          <ScrollytellingSection>
+            <section id="additional-content" className="mt-16 space-y-8">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">
+                The Future of Agency Work is Here
+              </h2>
             <p className="text-xl sm:text-2xl md:text-3xl">
               Our founding team brings 23 years of combined experience from BBDO,
               Leo Burnett, and Wieden+Kennedy. We&apos;ve worked on campaigns that generated
@@ -73,7 +73,8 @@ export default function AboutPage() {
               processes. No 18-month commitments. Just better work, delivered faster,
               for clients who want to move at the speed of business, not bureaucracy.
             </p>
-          </section>
+            </section>
+          </ScrollytellingSection>
         </div>
       </main>
     </div>

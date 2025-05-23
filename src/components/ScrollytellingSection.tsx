@@ -24,7 +24,11 @@ const LINES: string[] = [
   "Now let's make yours."
 ];
 
-export default function ScrollytellingSection() {
+export default function ScrollytellingSection({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const sectionRef = useRef<HTMLElement | null>(null);
   const panelRefs  = useRef<HTMLDivElement[]>([]);
   const tlRef      = useRef<gsap.core.Timeline | null>(null);
@@ -55,6 +59,7 @@ export default function ScrollytellingSection() {
         pin: true,
         scrub: true,
         anticipatePin: 1,
+        onLeave: self => self.kill(),
         snap: {
           snapTo: step,
           duration: { min: 0.05, max: 0.1 },
@@ -75,12 +80,6 @@ export default function ScrollytellingSection() {
       );
     });
 
-    tl.to(
-      panels[panels.length - 1],
-      { autoAlpha: 0, duration: step / 2 },
-      1 - step / 2
-    );
-
     return () => {
       tl.kill();
       ScrollTrigger.getAll().forEach(t => t.kill());
@@ -88,8 +87,9 @@ export default function ScrollytellingSection() {
   }, []);
 
   const handleSkip = () => {
-    tlRef.current?.scrollTrigger?.disable();
-    tlRef.current?.progress(1);
+    const tl = tlRef.current;
+    tl?.scrollTrigger?.kill();
+    tl?.progress(1);
     document
       .getElementById('additional-content')
       ?.scrollIntoView({ behavior: 'smooth' });
@@ -109,6 +109,9 @@ export default function ScrollytellingSection() {
             </p>
           </div>
         ))}
+        <div ref={addPanel} className="absolute inset-0 flex items-center justify-center">
+          {children}
+        </div>
         <button
           onClick={handleSkip}
           className="absolute bottom-4 right-4 text-sm text-black/60 hover:text-black transition-colors"
