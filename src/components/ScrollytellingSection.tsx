@@ -27,6 +27,7 @@ const LINES: string[] = [
 export default function ScrollytellingSection() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const panelRefs  = useRef<HTMLDivElement[]>([]);
+  const tlRef      = useRef<gsap.core.Timeline | null>(null);
 
   const addPanel = (el: HTMLDivElement | null) => {
     if (el && !panelRefs.current.includes(el)) panelRefs.current.push(el);
@@ -40,7 +41,7 @@ export default function ScrollytellingSection() {
     const panels  = panelRefs.current;
     if (!section || panels.length < 2) return;
 
-    const scrollLen = (panels.length - 1) * window.innerHeight;
+    const scrollLen = panels.length * window.innerHeight;
 
     panels.forEach((p, i) => i && gsap.set(p, { autoAlpha: 0 }));
 
@@ -61,6 +62,7 @@ export default function ScrollytellingSection() {
         }
       }
     });
+    tlRef.current = tl;
 
     panels.slice(1).forEach((panel, idx) => {
       const base = idx * step;
@@ -73,6 +75,12 @@ export default function ScrollytellingSection() {
       );
     });
 
+    tl.to(
+      panels[panels.length - 1],
+      { autoAlpha: 0, duration: step / 2 },
+      1 - step / 2
+    );
+
     return () => {
       tl.kill();
       ScrollTrigger.getAll().forEach(t => t.kill());
@@ -80,8 +88,11 @@ export default function ScrollytellingSection() {
   }, []);
 
   const handleSkip = () => {
-    const el = document.getElementById('additional-content');
-    el?.scrollIntoView({ behavior: 'smooth' });
+    tlRef.current?.scrollTrigger?.disable();
+    tlRef.current?.progress(1);
+    document
+      .getElementById('additional-content')
+      ?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
